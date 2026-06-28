@@ -1,21 +1,22 @@
 {
   "name": "mineflayer-notebot",
-  "version": "1.2",
-  "description": "minecraft bot",
+  "version": "2.0",
+  "description": "minecraft bot - Updated for latest mineflayer",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@encode42/nbs.js": "^4.0.1",
+    "@nbsjs/core": "^6.0.0",
     "@tonejs/midi": "^2.0.28",
-    "chalk": "^4.1.2",
-    "fs": "0.0.1-security",
+    "chalk": "^5.3.0",
     "minecraft-data": "^3.40.0",
-    "mineflayer": "^4.10.1",
+    "mineflayer": "^4.37.1",
     "minimist": "^1.2.8",
     "minimist-string": "^1.0.2",
     "node-schedule": "^2.1.1"
