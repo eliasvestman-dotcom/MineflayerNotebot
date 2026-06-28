@@ -20,7 +20,6 @@ def main():
     """Main function for single-bot setup."""
     config = load_config()
     
-    # Create main bot
     username = config["bot"].get("username", "notebot")
     Logger.log("Starting Mineflayer Notebot v2.0 (Python Port)", Logger.INFO)
     Logger.log(f"Connecting as {username}", Logger.INFO)
@@ -29,7 +28,6 @@ def main():
         bot = NoteBot(username, config)
         Logger.log(f"Connected as {username}", Logger.INFO)
         
-        # Keep alive
         while True:
             pass
     except KeyboardInterrupt:

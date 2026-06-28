@@ -1,36 +1,122 @@
-# MineflayerNotebot
-A notebot to play .nbs files using mineflayer
+# MineflayerNotebot - Python Version
+
+A Python port of the Mineflayer Notebot that plays `.nbs` (Note Block Studio) files using a Minecraft bot.
+
+## Installation
+
+### Requirements
+- Python 3.8+
+- pip (Python package manager)
+
+### Setup
+
+1. **Clone or download the repository**
+   ```bash
+   git clone https://github.com/eliasvestman-dotcom/MineflayerNotebot.git
+   cd MineflayerNotebot
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure the bot** (edit `config.yaml`):
+   ```yaml
+   bot:
+     username: "notebot"
+     host: "localhost"
+     port: 25565
+     version: "1.20.1"
+   
+   settings:
+     command_prefix: "@"
+     tune_speed: 80
+   
+   commands_perms:
+     - your_username
+   ```
+
+4. **Add song files** to the `songs/` directory (`.nbs` files)
+
+## Usage
+
+### Single Bot Mode
+Run a single bot that handles both leading and playing:
+```bash
+python main_single.py
+```
+
+### Multi-Bot Mode
+Run multiple worker bots (default: 4 players):
+```bash
+python main_multi.py
+```
+
+To change the number of workers, edit `main_multi.py`:
+```python
+num_workers = 4  # Change this value
+```
+
+## In-Game Commands
+
+Once the bot is running, use these chat commands:
+
+### Setup a Song
+```
+/tell notebot @notebot --setup songName
+```
+Where `songName` is the name of the song file (without `.nbs` extension).
+
+### Play a Song
+```
+/tell notebot @notebot --play songName
+```
+
+### Tune Note Blocks
+```
+/tell notebot @notebot --tune songName
+```
+
+### Detect Note Blocks
+```
+/tell notebot @notebot --detect
+```
+
+### Stop Playback
+```
+/tell notebot @notebot --stop
+```
+
+## File Structure
+
+```
+.
+├── main_single.py        # Single bot entry point
+├── main_multi.py         # Multi-bot entry point
+├── note_bot.py          # Main NoteBot class
+├── block_mapper.py      # Note block detection
+├── utils.py             # Utility functions and logging
+├── config.yaml          # Configuration file
+├── instruments_map.json # Instrument definitions
+├── requirements.txt     # Python dependencies
+├── songs/               # Directory for .nbs song files
+└── README.md            # This file
+```
+
+## Configuration
+
+Edit `config.yaml` to customize:
+- **Bot connection**: host, port, version, username
+- **Tuning speed**: How fast to tune note blocks
+- **Command permissions**: Which players can control the bot
+- **Command prefix**: Prefix for commands (default: `@`)
+
 ## Authors
 
-- [@meeplabsdev](https://www.github.com/meeplabsdev)
-## Usage/Examples
+- Original JavaScript version by [@meeplabsdev](https://github.com/meeplabsdev)
+- Python port by eliasvestman-dotcom
 
-Multiple Accounts (defaults to 4 players + one leader account)
-```cmd
-node index.js
-```
-Change the `const numWorkers` in index.js to change the number of accounts that play.
+## License
 
-`node single.js` can also be used to run a single client that handles leading and playing.
-
-Once in the game, run the following chat commands to use the bot:
-
-`/tell notebot @notebot --setup songName` where songName is the name of the song in the `/songs` folder (excluding the .nbs extension).
-
-This will tell you what note blocks to place around the notebot. I have found that it helps to stand as close as you can to the notebot to place the note blocks as you will have a better idea of the range that the bot can reach.
-
-When all the note blocks have been placed run 
-`/tell notebot @notebot --play songName`. It will attempt to auto-tune the note blocks but may fail. In this case run `/tell notebot @notebot --tune songName` to manually initiate a tune.
-
-If the bot is not detecting the note blocks, you can also use `/tell notebot @notebot --detect` to find them.
-## Logging
-
-Debug messages are GREEN.
-Info messages are BLUE.
-Warning messages are YELLOW.
-Error messages are RED.
-
-Warning and error messages will produce a beep when logged to get you attention because the bot will not use chat due to players becoming annoyed at the chat messages and the bot being kicked for spam.
-
-Most messages are self-explanatory.
-
+ISC
